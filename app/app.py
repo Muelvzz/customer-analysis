@@ -6,7 +6,18 @@ def run_app():
     get_api_key()
 
     try:
-        home()
+        homepage = home()
+
+        if homepage:
+            submit_button = st.button(
+                label="Analyze File",
+                help="Analyze the file containing ID's and Customer Reviews",
+                key="submit_button"
+            )
+            
+            if submit_button:
+                print("submit button is working")
+
     except Exception as e:
         st.error(f"An error occurred while loading the application: {e}")
 
