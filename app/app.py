@@ -1,18 +1,12 @@
 import streamlit as st
+from components.home import home
+from utils.api import get_api_key
 
 def run_app():
-    try:
-        st.set_page_config(
-            page_title="Customer Analysis Tool",
-            page_icon="📊",
-            layout="centered",
-            initial_sidebar_state="expanded"
-        )
+    get_api_key()
 
-        st.title("Customer Analysis Tool")
-        st.markdown("---")
-        st.write("Welcome to the Customer Analysis Tool. Use this application to analyze customer data and gain insights.")
-        
+    try:
+        home()
     except Exception as e:
         st.error(f"An error occurred while loading the application: {e}")
 
