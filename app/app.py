@@ -15,8 +15,9 @@ def run_app():
                 key="submit_button"
             )
             
-            if submit_button:
-                print("submit button is working")
+            if submit_button and "raw_data" in st.session_state:
+                df = st.session_state["raw_data"]
+                st.write(df.head())
 
     except Exception as e:
         st.error(f"An error occurred while loading the application: {e}")

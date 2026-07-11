@@ -4,7 +4,7 @@ import pandas as pd
 def check_uploaded_file(uploaded_file):
   try:
     uploaded_file.seek(0)
-    df = pd.read_csv(uploaded_file)
+    df = pd.read_csv(uploaded_file, low_memory=False)
 
     if df.empty:
       st.error("⚠️ The uploaded CSV file contains no data rows. Please upload a populated CSV file.")
@@ -35,7 +35,7 @@ def home():
   st.markdown("---")
 
   st.markdown("### 📁 Data Ingestion")
-  st.write("Upload your customer database to start exploring, segmenting, and generating insights.")
+  st.write("Upload your customer review file to start generating insights.")
 
   uploaded_file = st.file_uploader(
     label="Upload customer data CSV",
@@ -46,6 +46,5 @@ def home():
 
   if uploaded_file is not None:
     check_file = check_uploaded_file(uploaded_file)
-    return check_file
 
-    # df = st.session_state["raw_data"]
+    return check_file
